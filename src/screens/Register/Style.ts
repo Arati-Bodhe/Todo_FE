@@ -17,7 +17,7 @@ export const styles=StyleSheet.create({
         borderRadius:actuatedNormalize(10)
     },
     btnText:{
-        color:"FFFFFF",
+        color:color.WHITE,
         textAlign:'center',
         fontSize:actuatedNormalize(20),
         fontWeight:'500'

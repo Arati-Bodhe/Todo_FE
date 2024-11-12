@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { View,Text, TouchableOpacity } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
 
-import { Error, TextInput } from "../../components";
+import { Error, Loader, TextInput } from "../../components";
 import { styles } from "./Style";
 import { TextConstant } from "../../constants/text";
 import { color } from "../../constants/color";
@@ -12,7 +12,6 @@ import {registerUser} from "../../redux/slices/Register.Slice";
 
 
 export const Register=({navigation})=>{
-  const registerSelector = useSelector((state) => state.register);
   const [user,setUser]=useState({
     email:"",
     password:"",
@@ -20,6 +19,7 @@ export const Register=({navigation})=>{
   });
   const[error,setError]=useState('');
   const dispatch=useDispatch();
+  const registerSelector=useSelector(state=>state.register)
   const onChangeEmail=(data)=>{
     setUser({...user,email:data});
   }
@@ -29,18 +29,18 @@ export const Register=({navigation})=>{
   const onChangeFullName=(data)=>{
     setUser({...user,fullName:data})
   }
-useEffect(()=>{
-  console.log("data is", registerSelector);
-},[registerSelector.loading])
   const onRegister=()=>{
     if (user.email=="" || user.password == "" || user.fullName=="") {
-      setError("All fields are required")
+      setError(TextConstant.FIELD_REQ)
     }else{
       setError('')
       dispatch(registerUser(user));
     }
   }
+  console.log("registerSelector ",registerSelector);
+  
   return(
+    <Loader isLoading={registerSelector.loading}>
     <View style={styles.container}>
         <Text style={styles.topHead}>{TextConstant.REGISTER}</Text>
         <TextInput
@@ -58,7 +58,7 @@ useEffect(()=>{
         value={user.password}
         onChangeVal={onChangePassword}
         />
-                 {
+        {
           error && (
             <Error
              errMessage={error}
@@ -77,5 +77,6 @@ useEffect(()=>{
         </TouchableOpacity>
 
     </View>
+    </Loader>
   )
 }

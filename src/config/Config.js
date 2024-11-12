@@ -4,7 +4,6 @@ const currentEnv={
     },
     dev:{
         BASE_URL:"http://10.0.2.2:4000/",
-        URL:"helo"
     }
 };
 const ApiConfig = currentEnv["dev"];

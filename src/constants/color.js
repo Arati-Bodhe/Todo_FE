@@ -5,5 +5,6 @@ export const color={
     PURPLE:"#36013f",
     PINK:"#d90166",
     CORAL:"#ff7f50",
-    WHITE:"FFFFO"
+    WHITE:"#FCFBFC",
+    ERROR:"#A30000"
 }
