@@ -1,3 +1,4 @@
 export const API_END_POINT={
-    REGISTER:"api/v1/users/signup"
+    REGISTER:"api/v1/users/signup",
+    LOGIN:"api/v1/users/login"
 }

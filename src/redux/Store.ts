@@ -1,9 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import {registerReducer } from "./Reducer";
+import {loginReducer, registerReducer } from "./Reducer";
 
 const store=configureStore({
     reducer:{
-        register:registerReducer
+        register:registerReducer,
+        login:loginReducer
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({

@@ -39,11 +39,11 @@ async function handlePostRequest(endPoint, data) {
 }
 async function handleResponse(response) {
   let statusCode = response.data.statusCode;
-  // console.log("log ", response.data);
+  console.log("Tokens => ", response?.headers?.["set-cookie"])
   switch (statusCode) {
     case 200:
     case 201:
-      return response.data.data
+      return response.data
     default:
       return response.data
   }
@@ -55,8 +55,9 @@ async function handleError(error) {
     switch (statusCode) {
       case 406:
         return error.response.data
-        break;
       case 404:
+        return error.response.data
+      case 401:
         return error.response.data
       case 500:
         return error.response.data

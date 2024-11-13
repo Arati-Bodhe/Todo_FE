@@ -1,3 +1,5 @@
 import  registerReducer from '../redux/slices/Register.Slice';
-
-export {registerReducer}
+import loginReducer from "../redux/slices/LogIn.Slice";
+export {registerReducer,
+    loginReducer
+}
