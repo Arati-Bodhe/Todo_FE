@@ -1,10 +1,10 @@
 import React from "react";
 import { View,Text } from "react-native";
 
-export const Todo=({navigation})=>{
+export const TodoList=({navigation})=>{
   return(
     <View>
-        <Text>TODO</Text>
+        <Text>TODO LIST</Text>
     </View>
   )
 }

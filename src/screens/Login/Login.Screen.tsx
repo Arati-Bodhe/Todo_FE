@@ -25,6 +25,8 @@ export const Login = ({ navigation }) => {
   }
 
   const onLogin = () => {
+    navigation.navigate(screenNames.TODO)
+    return
     if (!(user.email || user.password)) {
       console.log("error ");
       setError("All fields are required");
