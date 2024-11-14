@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import apiRequest from "../../services/rootservice";
+import {apiRequest} from "../../services/rootservice";
 import { API_END_POINT } from "../../services/apiEndPoint";
 import { TextConstant } from "../../constants/text";
 
@@ -33,7 +33,7 @@ const initialState={
            state.logInSuccess=false
         }).addCase(logInUser.fulfilled,(state,action)=>{
             const payload=action?.meta?.arg;
-            console.log("login success :",action.payload.success);
+            console.log("login success :",action.payload.data);
             if (action.payload.success==false) {
                 state.error=action.payload
             }

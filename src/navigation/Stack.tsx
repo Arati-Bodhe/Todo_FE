@@ -14,7 +14,7 @@ function StackNavigation() {
             }}>
         <Stack.Screen name={screenNames.LOGIN} component={Login} />
         <Stack.Screen name={screenNames.REGISTER} component={Register} />
-        <Stack.Screen name={screenNames.TODO} component={TabNav} />
+        <Stack.Screen name={screenNames.TODO_LIST} component={TabNav} />
         <Stack.Screen name={screenNames.ADD_TODO} component={AddTodo} />
       </Stack.Navigator>
     )

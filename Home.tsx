@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { View,Text, TouchableOpacity } from "react-native";
 import ApiConfig from "./src/config/Config";
-import apiRequest from "./src/services/rootservice";
+import {apiRequest} from "./src/services/rootservice";
 import { TextConstant } from "./src/constants/text";
 import axios from "axios";
 

@@ -12,12 +12,10 @@ export function TabNav(){
         <Tab.Navigator
         screenOptions={{
             tabBarLabelStyle: { fontSize: actuatedNormalize(18) },
-            // tabBarItemStyle: { width: 100 },
-         //   tabBarStyle: { backgroundColor: 'powderblue' },
-         tabBarLabel:{ focused: true, color: "pink"}
+            tabBarLabel:{ focused: true, color: "pink"}
         }}
         >
-            <Tab.Screen name={screenNames.TODO_LIST} component={TodoList} />
+            <Tab.Screen name={screenNames.TODO_LIST_TAB} component={TodoList} />
             <Tab.Screen name={screenNames.COMPLETED} component={Completed} />
         </Tab.Navigator>
     )

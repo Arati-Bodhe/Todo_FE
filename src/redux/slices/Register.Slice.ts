@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import apiRequest from "../../services/rootservice";
+import {apiRequest} from "../../services/rootservice";
 import { TextConstant } from "../../constants/text";
 import { API_END_POINT } from "../../services/apiEndPoint";
 

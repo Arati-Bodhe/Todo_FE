@@ -11,7 +11,7 @@ function MainNav() {
 
   return (
     <NavigationContainer>
-      <TabNav/>
+      <StackNavigation/>
     </NavigationContainer>
 
   );
