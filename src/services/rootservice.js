@@ -20,7 +20,6 @@ async function apiRequest(endPoint, data = {}, method) {
 async function authApiRequest(endPoint, data? = {}, method) {
   console.log("endpont",endPoint);
   console.log("method",method);
-  
   switch (method) {
     case TextConstant.POST:
       return await handlePostRequest(endPoint, data,true);
@@ -40,17 +39,17 @@ async function handleGetRequest(endPoint,auth=false) {
         'Content-Type':'application/json',
         'Authorization':accessToken
       }
-      Logging.debug(`Axios.get: ${BASE_URL}${endPoint}`,{headers:headers})
+     // Logging.debug(`Axios.get: ${BASE_URL}${endPoint}`,{headers:headers})
       const response = await axios.get(`${BASE_URL}${endPoint}`,{headers:headers});
       if (response) {
-        Logging.debug(`Axios.get: ${BASE_URL}${endPoint}@Response`,response.data)
+        //Logging.debug(`Axios.get: ${BASE_URL}${endPoint}@Response`,response.data)
       }
       return await handleResponse(response)
     }else{
-      Logging.debug(`Axios.get: ${BASE_URL}${endPoint}`,data)
+      //Logging.debug(`Axios.get: ${BASE_URL}${endPoint}`,data)
       const response = await axios.get(`${BASE_URL}${endPoint}`);
       if (response) {
-        Logging.debug(`Axios.get: ${BASE_URL}${endPoint}@Response`,response.data)
+      //  Logging.debug(`Axios.get: ${BASE_URL}${endPoint}@Response`,response.data)
       }
       if (response && response.headers && endPoint==API_END_POINT.LOGIN) {
         setAuth(response?.headers);
@@ -73,10 +72,13 @@ async function handlePostRequest(endPoint, data,auth=false) {
         'Content-Type':'application/json',
         'Authorization':accessToken
       }
-      Logging.debug(`auth Axios.post: ${BASE_URL}${endPoint}`,headers,data);
+      console.log("data is ",data);
+      
+      Logging.debug(`auth Axios.post: ${BASE_URL}${endPoint}`,data);
       const response = await axios.post(`${BASE_URL}${endPoint}`,data,{
         headers:headers
-      });
+      },
+    );
       if (response) {
         Logging.debug(`Axios.post: ${BASE_URL}${endPoint}@Response`,response.data)
       }
@@ -88,7 +90,7 @@ async function handlePostRequest(endPoint, data,auth=false) {
       Logging.debug(`Axios.post: ${BASE_URL}${endPoint}`,data)
       const response = await axios.post(`${BASE_URL}${endPoint}`, data);
       if (response) {
-        Logging.debug(`Axios.post: ${BASE_URL}${endPoint}@Response`,response.data)
+       Logging.debug(`Axios.post: ${BASE_URL}${endPoint}@Response`,response.data)
       }
       if (response && response.headers && endPoint==API_END_POINT.LOGIN) {
         setAuth(response?.headers);

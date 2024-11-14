@@ -32,6 +32,7 @@ export const TodoList=({navigation})=>{
         <TodoComp 
          title={item.title}
          description={item.description}
+         id={item._id}
         />
       </View>
     )

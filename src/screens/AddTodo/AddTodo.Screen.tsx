@@ -8,15 +8,19 @@ import { styles } from "./Style";
 import { useDispatch, useSelector } from "react-redux";
 import { AddTodoCall } from "../../redux/slices/AddTodo.Slice";
 import { screenNames } from "../../constants/ScreenName";
+import { EditTodoCall } from "../../redux/slices/EditTodo.Slice";
 
 
-export const AddTodo = ({ navigation }) => {
+export const AddTodo = ( {route,navigation }) => {
   const dispatch=useDispatch();
   const userSelector=useSelector(state=>state.login);
-  const addTodoSelector=useSelector(state=>state.addTodo)
+  const addTodoSelector=useSelector(state=>state.addTodo);
+  const routes=route.params;
+ // console.log("routes are",routes);
+  
  const[task,setTask]=useState({
-  title:"",
-  description:""
+  title: routes.title || "",
+  description: routes.description || ""
  });
  const[error,setError]=useState('');
  const onChangeTitle=(data:string)=>{
@@ -30,8 +34,14 @@ export const AddTodo = ({ navigation }) => {
     setError("ALL fields are required")
   }else{
     setError("");
-    console.log("task submit ",task,userSelector?.data?._id);
-     dispatch(AddTodoCall(task));
+    // console.log("task submit ",task,userSelector?.data?._id);
+     if (routes.editTask) {
+      console.log(`EDIT TASK ${routes.editTask} `);
+      const payload={...task,taskId:routes.taskId}
+      dispatch(EditTodoCall(payload))
+     }else{
+      dispatch(AddTodoCall(task));
+     }
      navigation.navigate(screenNames.TODO_LIST)
   }
  }

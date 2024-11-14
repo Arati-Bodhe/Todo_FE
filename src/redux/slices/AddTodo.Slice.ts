@@ -29,18 +29,15 @@ const addTodoSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(AddTodoCall.pending, (state) => {
-        console.log("addtodo pending"); // Logs action object
         state.loading = true;
         state.addTodoSuccess=false
       })
       .addCase(AddTodoCall.fulfilled, (state, action) => {
-        console.log("addtodo action payload", action.payload.data); // Logs only the payload
         state.addTodoSuccess=action.payload.success;
         state.loading = false;
         state.data = action.payload; // Store the payload data in the state
       })
       .addCase(AddTodoCall.rejected, (state, action) => {
-        console.log("addtodo error", action.error); // Log any error that was thrown
         state.loading = false;
         state.addTodoSuccess=false
       });
