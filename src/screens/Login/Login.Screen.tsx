@@ -13,8 +13,8 @@ export const Login = ({ navigation }) => {
   const dispatch = useDispatch();
   const loginSelector = useSelector(state => state.login)
   const [user, setUser] = useState({
-    email: "",
-    password: ""
+    email: "john@gmail.com",
+    password: "john123"
   });
   const [error, setError] = useState('')
   const onChangeEmail = (data: string) => {

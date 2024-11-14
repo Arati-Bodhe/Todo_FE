@@ -5,15 +5,16 @@ import { actuatedNormalize, actuatedNormalizeVertical } from "../../dimension/Pi
 export const styles=StyleSheet.create({
     container:{
         flex:1,
-        backgroundColor:color.PINK
+        // backgroundColor:color.PINK
     },
     img:{
         width:actuatedNormalize(50),
-        height:actuatedNormalize(50)
+        height:actuatedNormalize(50),
     },
     imgView:{
         alignItems:'flex-end',
         marginTop:actuatedNormalizeVertical(20),
-        marginRight:actuatedNormalize(8)
+        marginRight:actuatedNormalize(8),
+        marginBottom:actuatedNormalizeVertical(10)
     }
 })

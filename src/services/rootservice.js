@@ -17,7 +17,10 @@ async function apiRequest(endPoint, data = {}, method) {
       throw new Error(`Unsupported HTTP method: ${method}`);
   }
 };
-async function authApiRequest(endPoint, data = {}, method) {
+async function authApiRequest(endPoint, data? = {}, method) {
+  console.log("endpont",endPoint);
+  console.log("method",method);
+  
   switch (method) {
     case TextConstant.POST:
       return await handlePostRequest(endPoint, data,true);
@@ -37,8 +40,8 @@ async function handleGetRequest(endPoint,auth=false) {
         'Content-Type':'application/json',
         'Authorization':accessToken
       }
-      Logging.debug(`Axios.get: ${BASE_URL}${endPoint}`,headers,data)
-      const response = await axios.get(`${BASE_URL}${endPoint}`,headers);
+      Logging.debug(`Axios.get: ${BASE_URL}${endPoint}`,{headers:headers})
+      const response = await axios.get(`${BASE_URL}${endPoint}`,{headers:headers});
       if (response) {
         Logging.debug(`Axios.get: ${BASE_URL}${endPoint}@Response`,response.data)
       }
@@ -48,6 +51,9 @@ async function handleGetRequest(endPoint,auth=false) {
       const response = await axios.get(`${BASE_URL}${endPoint}`);
       if (response) {
         Logging.debug(`Axios.get: ${BASE_URL}${endPoint}@Response`,response.data)
+      }
+      if (response && response.headers && endPoint==API_END_POINT.LOGIN) {
+        setAuth(response?.headers);
       }
       return await handleResponse(response)
     }
