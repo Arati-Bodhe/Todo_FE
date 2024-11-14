@@ -12,7 +12,7 @@ export const styles=StyleSheet.create({
         marginHorizontal:actuatedNormalize(15),
         paddingVertical:actuatedNormalizeVertical(9),
         paddingLeft:actuatedNormalize(30),
-        backgroundColor:color.LIGHT_YELLOW,
+        backgroundColor:"#cce7c9",
         borderRadius:actuatedNormalize(5)
     },
     title:{

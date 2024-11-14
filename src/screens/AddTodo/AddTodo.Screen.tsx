@@ -19,8 +19,8 @@ export const AddTodo = ( {route,navigation }) => {
  // console.log("routes are",routes);
   
  const[task,setTask]=useState({
-  title: routes.title || "",
-  description: routes.description || ""
+  title: routes?.title || "",
+  description: routes?.description || ""
  });
  const[error,setError]=useState('');
  const onChangeTitle=(data:string)=>{

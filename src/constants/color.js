@@ -8,5 +8,6 @@ export const color={
     WHITE:"#FCFBFC",
     ERROR:"#A30000",
     LIGHT_YELLOW:"#F3EAAF",
-    CHARCOAL:"#28231D"
+    CHARCOAL:"#28231D",
+    LIGHT_GREEN:"#52a447"
 }
