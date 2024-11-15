@@ -34,12 +34,14 @@ export const AddTodo = ( {route,navigation }) => {
     setError("ALL fields are required")
   }else{
     setError("");
-    // console.log("task submit ",task,userSelector?.data?._id);
+    console.log("task submit ",task,userSelector?.data?._id);
      if (routes.editTask) {
       console.log(`EDIT TASK ${routes.editTask} `);
       const payload={...task,taskId:routes.taskId}
       dispatch(EditTodoCall(payload))
      }else{
+      console.log("coming here");
+      
       dispatch(AddTodoCall(task));
      }
      navigation.navigate(screenNames.TODO_LIST)

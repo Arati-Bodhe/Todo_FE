@@ -17,7 +17,7 @@ async function apiRequest(endPoint, data = {}, method) {
       throw new Error(`Unsupported HTTP method: ${method}`);
   }
 };
-async function authApiRequest(endPoint, data? = {}, method) {
+async function authApiRequest(endPoint, data = {}, method) {
   console.log("endpont",endPoint);
   console.log("method",method);
   switch (method) {

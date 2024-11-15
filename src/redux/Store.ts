@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import {addTodoReducer, deleteTodoReducer, editTodoReducer, fetchTodoReducer, loginReducer, registerReducer } from "./Reducer";
+import {addTodoReducer, completeTodoReducer, deleteTodoReducer, editTodoReducer, fetchTodoReducer, loginReducer, registerReducer } from "./Reducer";
 
 const store=configureStore({
     reducer:{
@@ -8,7 +8,8 @@ const store=configureStore({
         addTodo:addTodoReducer,
         fetchTodo:fetchTodoReducer,
         editTodo:editTodoReducer,
-        deleteTodo:deleteTodoReducer
+        deleteTodo:deleteTodoReducer,
+        completeTodo:completeTodoReducer
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({

@@ -9,12 +9,14 @@ import { Loader, TodoComp } from "../../components";
 import { actuatedNormalize, actuatedNormalizeVertical } from "../../dimension/PixelScaling";
 import { color } from "../../constants/color";
 import { DeleteTodoCall } from "../../redux/slices/DeleteTodo.Slice";
+import { CompleteTodoCall } from "../../redux/slices/CompleteTodo.Slice";
 
 export const TodoList = ({ navigation }) => {
   const dispatch = useDispatch();
   const userSelector = useSelector(state => state.login);
   const todoSelector = useSelector(State => State.fetchTodo);
   const deleteTodoSelector = useSelector(state => state.deleteTodo);
+  const completeTodoSelector=useSelector(state => state.completeTodo)
   const [userid, setUserId] = useState('');
   const [todoList, setTodoList] = useState([]);
   const [deleteIcon, setDeleteIcon] = useState(false);
@@ -23,18 +25,19 @@ export const TodoList = ({ navigation }) => {
   useEffect(() => {
     const userID = userSelector.data._id
     setUserId(userID);
-    console.log("deletetodod selctor", deleteTodoSelector.deleteSuccess);
+    dispatch(fetchTodoCall(userID));
+    // setTodoList(todoSelector.data)
 
-    dispatch(fetchTodoCall(userID))
-  }, [deleteTodoSelector.deleteSuccess]);
+  }, [deleteTodoSelector.deleteSuccess,completeTodoSelector.completeTodoSuccess]);
 
   useEffect(() => {
     console.log("todoSelector ", typeof todoSelector.data);
     setTodoList(todoSelector.data)
   }, [todoSelector.loading])
   const gotoAddTask = () => {
-    console.log('comgn here');
-    navigation.replace(screenNames.ADD_TODO)
+    navigation.replace(screenNames.ADD_TODO,{
+      editTask:false
+    })
   }
   const onLongPress = (data, id) => {
     //  console.log("id is",id);  
@@ -48,12 +51,21 @@ export const TodoList = ({ navigation }) => {
     }
     dispatch(DeleteTodoCall(payload));
     setDeleteIcon(false);
+  };
+  const completeTodoItem =()=>{
+     const payload={
+      id:currentItem
+     };
+     dispatch(CompleteTodoCall(payload));
+     setDeleteIcon(false);
   }
   const renderItem = (item) => {
     const isoDate = item.createdAt;
     const localDate = new Date(isoDate).toLocaleString();
     return (
       <View>
+        {
+          item.completed==false && (
         <TodoComp
           title={item.title}
           description={item.description}
@@ -62,6 +74,9 @@ export const TodoList = ({ navigation }) => {
           createdAt={localDate}
           bgColor={currentItem== item._id ? color.CORAL :color.GREEN_200}
         />
+          )
+        }
+        
       </View>
     )
   }
@@ -101,9 +116,7 @@ export const TodoList = ({ navigation }) => {
                 textAlign: "center"
               }}>DELETE</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => {
-              console.log("current item id", currentItem);
-            }}
+            <TouchableOpacity onPress={() => completeTodoItem()}
               style={{
                 marginLeft: actuatedNormalize(25),
                 marginBottom: actuatedNormalize(10),

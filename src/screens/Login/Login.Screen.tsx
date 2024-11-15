@@ -25,8 +25,6 @@ export const Login = ({ navigation }) => {
   }
 
   const onLogin = () => {
-    // navigation.navigate(screenNames.TODO)
-    // return
     if (!(user.email || user.password)) {
       console.log("error ");
       setError("All fields are required");
@@ -38,7 +36,6 @@ export const Login = ({ navigation }) => {
   }
 
   useEffect(() => {
-    // console.log("selector login ",loginSelector.error);
     if (loginSelector.logInSuccess == true) {
       navigation.navigate(screenNames.TODO_LIST)
     }
