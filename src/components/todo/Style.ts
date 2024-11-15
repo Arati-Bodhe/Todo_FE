@@ -11,8 +11,8 @@ export const styles=StyleSheet.create({
         marginVertical:actuatedNormalizeVertical(10),
         marginHorizontal:actuatedNormalize(15),
         paddingVertical:actuatedNormalizeVertical(9),
-        paddingLeft:actuatedNormalize(30),
-        backgroundColor:"#cce7c9",
+        paddingLeft:actuatedNormalize(15),
+        // backgroundColor:"#cce7c9",
         borderRadius:actuatedNormalize(5)
     },
     title:{
@@ -22,10 +22,10 @@ export const styles=StyleSheet.create({
     },
     description:{
         fontSize:actuatedNormalize(15),
-        color:color.CHARCOAL
+        color:color.CHARCOAL,
     },
     textContainer:{
-        width:actuatedNormalize(220),
+        width:actuatedNormalize(300),
     },
     delteIcon:{
         width:actuatedNormalize(35),
@@ -34,13 +34,11 @@ export const styles=StyleSheet.create({
     editIcon:{
         width:actuatedNormalize(30),
         height:actuatedNormalizeVertical(25),
-        marginBottom:actuatedNormalizeVertical(5)
+        marginBottom:actuatedNormalizeVertical(5),
+        alignSelf:"flex-end"
     },
-    iconContainer:{
-        display:"flex",
-        flexDirection:"row",
-        alignItems:"flex-end",
-        justifyContent:"center",
-        marginRight:actuatedNormalize(15)
-    }
+    
+    checkbox: {
+        alignSelf: 'center',
+      },
 })

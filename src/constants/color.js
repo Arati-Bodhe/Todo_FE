@@ -9,5 +9,6 @@ export const color={
     ERROR:"#A30000",
     LIGHT_YELLOW:"#F3EAAF",
     CHARCOAL:"#28231D",
-    LIGHT_GREEN:"#52a447"
+    LIGHT_GREEN:"#52a447",
+    GREEN_200:"#cce7c9"
 }

@@ -5,7 +5,6 @@ import { actuatedNormalize, actuatedNormalizeVertical } from "../../dimension/Pi
 export const styles=StyleSheet.create({
     container:{
         flex:1,
-        // backgroundColor:color.PINK
     },
     img:{
         width:actuatedNormalize(50),

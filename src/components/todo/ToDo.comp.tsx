@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { View ,Text, Image, TouchableOpacity} from "react-native";
 import { styles } from "./Style";
 import { useNavigation } from "@react-navigation/native";
@@ -14,30 +14,32 @@ export const TodoComponent=(props)=>{
             taskId:props.id
         })
     }
+    const onLongPress=()=>{
+        props.onLongPress(true,props.id);
+    }
     return(
-        <View style={styles.container}>
+        <View style={[styles.container,{backgroundColor:props.bgColor}]}>
+        <TouchableOpacity 
+          onLongPress={()=>onLongPress()}
+          style={{
+            display:"flex",
+            flexDirection:"row",
+            alignItems:"center"
+          }}
+         >
         <View style={styles.textContainer} >
             <Text style={styles.title}>{props.title}</Text>
             <Text style={styles.description}>{props.description}</Text>
+            <Text style={styles.description}>{props.createdAt}</Text>
         </View>
-        <View style={styles.iconContainer}>
-            <TouchableOpacity onPress={()=>{
-                console.log("ID IS",props.id);
-            }}>
-            <Image 
-             source={require("../../assets/delete_todo.jpg")}
-             resizeMode="contain"
-             style={styles.delteIcon}
-            />
-            </TouchableOpacity>
-            <TouchableOpacity onPress={()=>onpressEdit()}>
+         <TouchableOpacity onPress={()=>onpressEdit()}>
              <Image 
              source={require("../../assets/edit_Todo.jpg")}
              resizeMode="contain"
              style={styles.editIcon}
             />
-            </TouchableOpacity>
-        </View>
+         </TouchableOpacity>
+        </TouchableOpacity>
         </View>
 
     )
