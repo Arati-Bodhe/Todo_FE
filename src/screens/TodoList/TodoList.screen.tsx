@@ -33,8 +33,7 @@ export const TodoList = ({ navigation }) => {
   }, [deleteTodoSelector.deleteSuccess,completeTodoSelector.completeTodoSuccess]);
 
   useEffect(() => {
-    console.log("todoSelector ", typeof todoSelector.data);
-    setTodoList(todoSelector.data)
+    setTodoList(todoSelector.data.filter((item) =>  item.completed === false))
   }, [todoSelector.loading])
   const gotoAddTask = () => {
     navigation.replace(screenNames.ADD_TODO,{
@@ -69,8 +68,6 @@ export const TodoList = ({ navigation }) => {
     const localDate = new Date(isoDate).toLocaleString();
     return (
       <View>
-        {
-          item.completed==false && (
         <TodoComp
           title={item.title}
           description={item.description}
@@ -79,9 +76,6 @@ export const TodoList = ({ navigation }) => {
           createdAt={localDate}
           bgColor={currentItem== item._id ? color.CORAL :color.GREEN_200}
         />
-          )
-        }
-        
       </View>
     )
   }
