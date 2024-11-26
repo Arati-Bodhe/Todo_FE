@@ -10,6 +10,7 @@ import { actuatedNormalize, actuatedNormalizeVertical } from "../../dimension/Pi
 import { color } from "../../constants/color";
 import { DeleteTodoCall } from "../../redux/slices/DeleteTodo.Slice";
 import { CompleteTodoCall } from "../../redux/slices/CompleteTodo.Slice";
+import GetDeviceToken from "../../utils/Notification";
 
 export const TodoList = ({ navigation }) => {
   const dispatch = useDispatch();
@@ -22,6 +23,7 @@ export const TodoList = ({ navigation }) => {
   const [deleteIcon, setDeleteIcon] = useState(false);
   const [currentItem, setCurrentItem] = useState();
 
+  
   useEffect(() => {
     const userID = userSelector.data._id
     setUserId(userID);
@@ -40,12 +42,10 @@ export const TodoList = ({ navigation }) => {
     })
   }
   const onLongPress = (data, id) => {
-    //  console.log("id is",id);  
     setDeleteIcon(data);
     setCurrentItem(id)
   }
   const deleteTodoItem = () => {
-    //   console.log("current item id",currentItem);
     const payload = {
       id: currentItem
     }
@@ -53,11 +53,16 @@ export const TodoList = ({ navigation }) => {
     setDeleteIcon(false);
   };
   const completeTodoItem =()=>{
+  GetDeviceToken().then((Response)=>{
+    console.log("fcmatOken is",Response);
      const payload={
-      id:currentItem
+      id:currentItem,
+      deviceToken:Response
      };
      dispatch(CompleteTodoCall(payload));
      setDeleteIcon(false);
+  })
+   
   }
   const renderItem = (item) => {
     const isoDate = item.createdAt;
@@ -140,7 +145,7 @@ export const TodoList = ({ navigation }) => {
         )
       }
       <FlatList
-        data={todoList}
+       data={todoList}
         renderItem={({ item }) => renderItem(item)}
       />
     </View>
